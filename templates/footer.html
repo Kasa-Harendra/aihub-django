@@ -1,0 +1,122 @@
+{% load static %}
+
+
+
+<div class="bg-circle-container">
+    <div class="bg-circle"></div>
+</div>
+<nav class="navbar navbar-expand-lg fixed-bottom bg-body-tertiary">
+    <div class="container-fluid" id="footer">
+        <ul style="list-style: none;display:flex; justify-content: center;">
+            <div><li class="desc_item"><i class="fa-solid fa-building-columns"></i><a href="https://www.vvitguntur.com/">VVIT</a></li></div>
+            <div><li class="desc_item"><i class="fa-solid fa-location-dot"></i><a href="https://www.google.com/maps/place/Vasireddy+Venkatadri+Institute+of+Technology/data=!4m2!3m1!1s0x0:0x8c86e4f36490336b?sa=X&ved=1t:2428&ictx=111">Guntur</a></li></div>
+            <div><li class="desc_item"><i class="fas fa-envelope"></i><a href="mailto:">Mail</a></li></div>
+            <div><li class="desc_item"><i class="fa-brands fa-github"></i><a href="https://github.com/AIHUB-VVIT">Github</a></li></div>
+        </ul>
+    </div>
+</nav>
+<style>
+    .desc_item {
+        margin: 0 15px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 10;
+    }
+    
+    .desc_item i {
+        margin-right: 8px;
+    }
+    
+    .desc_item a {
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.3s ease;
+    }
+    
+    .desc_item a:hover {
+        color:rgb(214, 219, 228);
+    }
+    
+    #footer {
+        justify-content: center;
+        padding-top: 12.5px;
+        position: relative;
+        z-index: 10;
+        background-color: rgba(248, 249, 250, 0.85);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    
+    .bg-circle-container {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        overflow: hidden;
+    }
+    
+    .bg-circle {
+        position: absolute;
+        bottom: -21.45%;
+        right: -12%;
+        width: 41.5vw;
+        height: 45vw;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.15;
+        z-index: -1;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.15), inset 0 0 60px rgba(0, 0, 0, 0.1);
+        filter: saturate(1.2);
+        /* Animation removed */
+        transform: none;
+    }
+    
+    /* Interactive states */
+    .navbar.fixed-bottom:hover ~ .bg-circle-container .bg-circle {
+        opacity: 0.25;
+        filter: saturate(1.5) brightness(1.1);
+    }
+    
+    /* Ensure content overlays background */
+    .card, .container, .project-card, .app-card, .blog-card, section, article, main {
+        position: relative !important;
+        z-index: 5 !important;
+    }
+    
+    /* Mobile optimization */
+    @media (max-width: 768px) {
+        .desc_item {
+            margin: 0 8px;
+            font-size: 0.9em;
+        }
+        
+        .bg-circle {
+            width: 100vw;
+            height: 100vw;
+            bottom: -11.15%;  /* Changed from -40% */
+            right: -27.25%;   /* Changed from -30% */
+            opacity: 0.15; /* Changed from 0.09 */
+            display: block !important; /* Force display */
+            visibility: visible !important; /* Ensure visibility */
+            transform: none;
+        }
+        
+        /* Ensure footer is visible on mobile */
+        #footer {
+            padding: 8px 0;
+        }
+        
+        /* Fix for mobile browsers that don't support backdrop-filter */
+        @supports not (backdrop-filter: blur(5px)) {
+            #footer {
+                background-color: rgba(248, 249, 250, 0.95);
+            }
+        }
+    }
+</style>
+

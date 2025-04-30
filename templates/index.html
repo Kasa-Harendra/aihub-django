@@ -1,0 +1,181 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-HUB-Home</title>
+    <!-- Load script before using custom elements -->
+    {% include 'links.html' %}
+    <link rel="stylesheet" href="{% static 'styling/home.css' %}">
+    <!-- Static background styles with no animation -->
+    <style>
+        body {
+            position: relative;
+        }
+        
+        .main_content {
+            position: relative;
+            z-index: 5;
+            padding-top: 70px; /* Space for fixed header */
+            padding-bottom: 70px; /* Space for fixed footer */
+        }
+        
+        /* Single static background circle */
+        .bg-circle-container {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .bg-circle {
+            position: absolute;
+            bottom: -15%;
+            right: -15%;
+            width: 70vw;
+            height: 70vw;
+            border-radius: 50%;
+            background-image: url('./images/dharma-wheel.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.35;
+            z-index: -1;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.15), inset 0 0 60px rgba(0, 0, 0, 0.1);
+            filter: saturate(1.2);
+        }
+        
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .main_content {
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+            
+            .bg-circle {
+                width: 100vw;
+                height: 100vw;
+                bottom: -40%;
+                right: -30%;
+                opacity: 0.09;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    
+    <!-- Main content -->
+    <div class="main_content">
+        <div class="info">
+            <p></p>
+            <br>
+            <img src="{% static 'images/index1.png' %}" alt="Decorative Design" class="image">
+            <div style="text-align: center;">
+                <h6>Inspiration is not tangible unless you</h6>
+                <br>
+                <h6><b><span id="typed-text"></span></b></h6>
+            </div>
+           
+<script>
+  const words = ["Embrace The Uncertainty", "Focus on the process", "Practice the mindfulness","Cultivate the gratitude","Reframe the failure"];
+  let i = 0; 
+  let j = 0; 
+  let isDeleting = false;
+  const typingSpeed = 100; 
+  const deletingSpeed = 50; 
+  const pauseTime = 1000; 
+
+  function typeEffect() {
+    const typedText = document.getElementById("typed-text");
+    let currentWord = words[i];
+
+    if (isDeleting) {
+      j--;
+    } else {
+      j++;
+    }
+
+    typedText.innerHTML = currentWord.substring(0, j) + "|"; 
+
+    let nextSpeed = isDeleting ? deletingSpeed : typingSpeed;
+
+    if (!isDeleting && j === currentWord.length) {
+      isDeleting = true;
+      nextSpeed = pauseTime;
+    } else if (isDeleting && j === 0) {
+      isDeleting = false;
+      i = (i + 1) % words.length; 
+      nextSpeed = typingSpeed;
+    }
+
+    setTimeout(typeEffect, nextSpeed);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => setTimeout(typeEffect, 300)); 
+</script>
+
+            <img src="{% static 'images/index2.png' %}" alt="Decorative Design" class="image">
+            <br>
+            <div style="text-align: center;">
+                <p>Welcome all</p>
+                <p><b>"</b>&nbsp;We are the students community of <br>&nbsp; VVIT dedicated to leverage AI&nbsp;<b>"</b></p>
+                <p>This site is still under construction.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Only one background element (moved after content for proper layer stacking) -->
+    <div class="bg-circle-container">
+        <div class="bg-circle"></div>
+    </div>
+    
+    {% include 'footer.html' %}
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <!-- Background check script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Force background image to be visible
+            const bgCircles = document.querySelectorAll('.bg-circle');
+            
+            // If we have more than one, remove extras
+            if (bgCircles.length > 1) {
+                for (let i = 1; i < bgCircles.length; i++) {
+                    bgCircles[i].parentNode.removeChild(bgCircles[i]);
+                }
+            }
+            
+            // Make sure the one remaining circle has correct settings
+            const bgCircle = document.querySelector('.bg-circle');
+            if (bgCircle) {
+                bgCircle.style.backgroundImage = `url("{% static 'images/dharma-wheel.png'  %}")`;
+                bgCircle.style.opacity = "0.35";
+                // Ensure no animation is applied
+                bgCircle.style.animation = "none";
+                bgCircle.style.transform = "none";
+                bgCircle.style.transition = "none";
+            } else {
+                // Create background if not exists
+                const container = document.createElement('div');
+                container.className = 'bg-circle-container';
+                container.style = 'position: fixed; bottom: 0; right: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden;';
+                
+                const circle = document.createElement('div');
+                circle.className = 'bg-circle';
+                circle.style = 'position: absolute; bottom: -15%; right: -15%; width: 70vw; height: 70vw; border-radius: 50%; background-image: url("./images/dharma-wheel.png"); background-size: cover; background-position: center; opacity: 0.35; z-index: -1; box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);';
+                
+                container.appendChild(circle);
+                document.body.appendChild(container);
+            }
+        });
+    </script>
+</body>
+</html>
