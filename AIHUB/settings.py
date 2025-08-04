@@ -31,15 +31,23 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ai_hub'
 ]
+
+MAIN_APP = [
+    'apps.ai_hub.apps.AiHubConfig',
+]
+LOCAL_APPS = [
+    'apps.courses.matlab.apps.MatlabConfig', 
+]
+
+INSTALLED_APPS = DJANGO_APPS + MAIN_APP + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,7 +64,7 @@ ROOT_URLCONF = 'AIHUB.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, 'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,17 +127,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-STATICFILES_DIRS = ((os.path.join(BASE_DIR, 'static')), )
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media/' # Use Path object for consistency if desired: BASE_DIR / 'media'
-
+MEDIA_ROOT = BASE_DIR / 'media'

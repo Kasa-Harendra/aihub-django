@@ -1,3 +1,5 @@
 django
-pathlib
 gunicorn
+pathlib
+pillow
+json
