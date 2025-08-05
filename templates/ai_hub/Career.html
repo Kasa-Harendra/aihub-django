@@ -7,24 +7,42 @@
     {% include 'ai_hub/partials/links.html' %}
     <title>AI-HUB-Career</title>
     <link rel="stylesheet" href="{% static 'styling/ai_hub/career.css' %}">
+    <link rel="stylesheet" href="{% static 'styling/ai_hub/blog.css' %}">
 </head>
 <body>
     {% include 'ai_hub/partials/header.html' %}
+    <br><br>
     <h1 id="page-title">Career Catalyts</h1>
     <h3 id="section_heading">Job Guide</h3>
     <hr>
+    <main id="blog-container" class='container'>
+            {% for article in articles %}
+                <div class="blog-card">
+                    <h2>{{article.title}}</h2>
+                    <a href="blog_viewer{{article.blog.url}}">Read More</a>
+                </div>
+            {% endfor %}
+            <a href="/career/job-guide">Read More...</a>
+        </main>
+    <h3 id="section_heading">DSA</h3>
+    <hr>
     <div id="cards">
-        <div class="card" style="width: 18rem;">
-            <img src="{% static 'images/ai_hub/Jobs.jpeg' %}" class="card-img-top" alt="jobs image">
+        <div id="dsa" class="card" style="width: 100%; background-color:transparent; box-shadow:none">
             <div class="card-body">
-              <h5 class="card-title">Jobs</h5>
-              <p class="card-text">"Unleash Your 2025 Potential: The Ultimate Fresher’s Career Toolkit!"</p>
-              <a href="blogs" class="btn btn-primary">Explore</a>
+              <h5 class="card-title"></h5>
+              <p class="card-text">
+                Data Structures and Algorithms (DSA) are the fundamental building blocks of computer science. Data Structures, 
+                like arrays, trees, and graphs, are specialized formats for organizing and storing data to enable efficient 
+                access and modification. Algorithms are well-defined procedures that use these structures to solve problems, 
+                such as sorting data or searching for an item. A strong grasp of DSA is crucial for developing optimized, 
+                scalable, and high-performance software, forming the core of effective problem-solving and computational 
+                thinking for any software engineer.
+              </p>
+              <a href="career/dsa" class="btn btn-primary">Study Now! </a>
             </div>
         </div>
     </div>
-    <h3 id="section_heading">Life Skills</h3>
-    <hr>
+    <h3 id="section_heading">Life Skills</h3><hr>
     <div id="cards">
         <div class="card" style="width: 18rem;">
             <img src="{% static 'images/ai_hub/Quant.png' %}" class="card-img-top" alt="...">
@@ -60,26 +78,9 @@
             </div>
           </div>
     </div>
-    <h3 id="section_heading">DSA</h3>
     <hr>
-    <div id="cards">
-        <div id="dsa" class="card" style="width: 100%; background-color:transparent; box-shadow:none">
-            <div class="card-body">
-              <h5 class="card-title"></h5>
-              <p class="card-text">
-                Data Structures and Algorithms (DSA) are the fundamental building blocks of computer science. Data Structures, 
-                like arrays, trees, and graphs, are specialized formats for organizing and storing data to enable efficient 
-                access and modification. Algorithms are well-defined procedures that use these structures to solve problems, 
-                such as sorting data or searching for an item. A strong grasp of DSA is crucial for developing optimized, 
-                scalable, and high-performance software, forming the core of effective problem-solving and computational 
-                thinking for any software engineer.
-              </p>
-              <a href="career/dsa" class="btn btn-primary">Study Now! </a>
-            </div>
-        </div>
-    </div>
+    
     {% comment %} <h3 id="section_heading">Web Dev</h3>
-    <hr>
     <div id="cards">
         <div class="card" style="width: 18rem;">
             <img src="..." class="card-img-top" alt="...">

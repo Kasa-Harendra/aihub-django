@@ -8,9 +8,26 @@
     <link rel="stylesheet" href="{% static 'styling/courses/matlab/home.css' %}">
     <title>Matlab-Home</title>
 </head>
-<body>  
-    {% include 'courses/matlab/header.html' %}
-    <h1 id="page-title" class="text-center mt-7">Calculus using MATLAB</h1>
+<body oncontextmenu="return false;">  
+    {% comment %} <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">AI-HUB | MATLAB</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+                 <li class="nav-item">
+                    <a class="nav-link btn btn-primary" aria-current="page" href='/courses/matlab/index'> Open Matlab </a>
+                </li> 
+            </ul>
+        </div>
+    </div>
+    </nav> {% endcomment %}
+    <div class='mt-3 pt-3'>
+        <a href="/" style="margin-left: 2rem;font-size:12px;">AI-HUB@VVITU</a> &gt <a href="/courses" style="font-size:12px;">Courses</a> &gt <a href="" style="font-size:12px;">Calculus Using Matlab</a>
+    </div>
+    <h1 id="page-title" class="text-center mt-4">Calculus using MATLAB</h1>
     <hr>
     <div class="container-fluid" style='padding: 1rem;'>
         <div class="row">
@@ -43,8 +60,8 @@
                                     <h4 class="experiment-title mb-2">{{ exp.title }}</h4>
                                     <h6 class="card-subtitle mb-2 text-body-secondary"><b>Description</b></h6>
                                     <p class="card-text">{{ exp.description }}</p>
-                                    <a href="/courses/matlab/experiment_desc?id={{exp.id}}" class='btn btn-light'> Read More</a> 
-                                    <a href="/courses/matlab/experiment_view?id={{exp.id}}" class='btn btn-light'>Code Walkthrough</a>
+                                    <a href="/courses/calculus-using-matlab/experiment_desc?id={{exp.id}}" class='btn btn-light mb-1'> Read More</a> 
+                                    <a href="/courses/calculus-using-matlab/experiment_view?id={{exp.id}}" class='btn btn-light mb-1'>Code Walkthrough</a>
                                 </div>
                             </div>
                         </div><hr style="color: rgba(0, 0, 0, 1); height: 3px;">

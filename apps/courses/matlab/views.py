@@ -22,17 +22,17 @@ def exp_detail(request):
     try:
         exp_id = request.GET.get('id')
         if not exp_id:
-            return redirect('/courses/matlab/')
+            return redirect('/courses/calculus-using-matlab/')
         exp_blog = MatlabExperiment.objects.get(id=exp_id)
         markdown_content = exp_blog.blog_file.read().decode('utf-8')
         html_content = markdown2.markdown(markdown_content, extras=["tables", "fenced-code-blocks"])
         context = {'exp': exp_blog, 'blog_content_html': html_content}
         return render(request, 'courses/matlab/experiment_desc.html', context=context)
     except MatlabExperiment.DoesNotExist:
-        return redirect('/courses/matlab/')
+        return redirect('/courses/calculus-using-matlab/')
     except Exception as e: 
         print(f"An error occurred: {e}") 
-        return redirect('/courses/matlab/')
+        return redirect('/courses/calculus-using-matlab/')
 
 def exp_view(request):
     exp_id = request.GET.get("id")

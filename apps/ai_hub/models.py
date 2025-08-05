@@ -43,6 +43,34 @@ class Event(models.Model):
             return self.schedule > timezone.now()
         return False
     
+class Hackathon(models.Model):
+    event = models.CharField(max_length=50)
+    date = models.CharField(max_length=50)
+    time = models.CharField(max_length=60)
+    venue = models.CharField(max_length=60)
+    author = models.CharField(max_length=100)
+    details = models.TextField(max_length=500)
+    prizes = models.CharField(max_length=100)
+    moderators = models.CharField(max_length=200)
+    leaderboard_url = models.URLField(max_length=500, blank=True, null=True)
+    discord_url = models.URLField(default="https://discord.gg/ChE5k7BNSe", max_length=500)
+    schedule = models.DateTimeField(blank=True, null=True)
+
+    def is_upcoming(self):
+        if self.schedule:
+            return self.schedule > timezone.now()
+        return False
+
+
+class JobGuide(models.Model):
+    title = models.CharField(max_length=250)
+    blog = models.FileField(upload_to='blogs', blank=True, null=True)
+    def get_file_name(self):
+        if self.blog and self.blog.url:
+            base, ext = os.path.splitext(self.blog.url)
+            return base
+        return self.blog.url
+
 class Blog(models.Model):
     title = models.CharField(max_length=250)
     blog = models.FileField(upload_to='blogs', blank=True, null=True)

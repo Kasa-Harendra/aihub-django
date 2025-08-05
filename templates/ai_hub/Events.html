@@ -6,8 +6,8 @@
     {% include 'ai_hub/partials/links.html' %}
     <link rel="stylesheet" href="{% static 'styling/ai_hub/meetups.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <title>AI-HUB-About</title>
+    <title>AI-HUB - Events</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,6 +16,7 @@
             padding-bottom: 100px;
             text-align: left; /* Added to align content to the left */
         }
+
         .container {
             background: #f9f9f9;
             padding: 20px;
@@ -56,13 +57,13 @@
     </style>
 </head>
 <body>
-
-    {% include 'ai_hub/partials/header.html' %}
+    {% include "ai_hub/partials/header.html" %}
+    <br><br>
     <h1 id="page-title">Upcoming Events</h1>
-    <hr><br style="padding-bottom: 5px;">
-    {% if upcoming is None %}
+    {% if event_upcoming is None and hackathon_upcoming is None %}
         <center><p>No upcoming events. Stay tuned for more updates.</p></center>
-    {% else %}
+    {% endif %}
+    {% if event_upcoming is not None %}
         <br><br>
         {% for event in upcoming %}
         <div class="container">
@@ -74,12 +75,46 @@
         </div>  
         {% endfor %}
     {% endif %}
-    <h1 id="page-title">Past Events</h1>
+    {% if hackathon_upcoming is not None %}
+        {% for hackathon in hackathon_upcoming %}
+        <div class="container">
+            <p><strong>Event:</strong>{{hackathon.event}}</p>
+            <p><strong>Date:</strong>{{hackathon.date}}</p>
+            <p><strong>Duration:</strong>{{hackathon.duration}}</p>
+            <p><strong>Time:</strong>{{hackathon.time}}</p>
+            <p><strong>Venue of the contest:</strong>{{hackathon.venue}}</p>
+            <p><strong>Author of the challenges:</strong> {{hackathon.author}}</p>
+            <p><strong>Details:</strong>{{hackathon.details}}</p>
+            <p><strong>Prizes:</strong>{{hackathon.prizes}}</p>
+            <p><strong>Contest moderators:</strong> {{hackathon.moderators}}</p>
+            <a href="{{hackathon.leaderboard_url}}" class="button">Leaderboard</a> 
+            <a href="{{hackathon.discord_url}}" class="button">Join our Discord</a>
+        </div>
+        {% endfor %}
+    {% endif %}
     <hr>
+    <h5 id="page-title">Archeives</h5> <hr>
+    {% if hackathon_past %}
+        <h5 id="page-title">Hackathon</h5>
+        {% for hackathon in hackathon_past %}
+        <div class="container mb-2">
+            <p><strong>Event:</strong> {{hackathon.event}}</p>
+            <p><strong>Date:</strong> {{hackathon.date}}</p>
+            <p><strong>Duration:</strong> {{hackathon.duration}}</p>
+            <p><strong>Time:</strong> {{hackathon.time}}</p>
+            <p><strong>Venue of the contest:</strong> {{hackathon.venue}}</p>
+            <p><strong>Author of the challenges:</strong> {{hackathon.author}}</p>
+            <p><strong>Details:</strong> {{hackathon.details}}</p>
+            <p><strong>Prizes:</strong> {{hackathon.prizes}}</p>
+            <p><strong>Contest moderators:</strong> {{hackathon.moderators}}</p>
+            <a href="{{hackathon.leaderboard_url}}" class="button"> Leaderboard</a> 
+            <a href="{{hackathon.discord_url}}" class="button"> Join our Discord</a>
+        </div>
+        {% endfor %}
+    {% endif %}
     <h5 id="page-title">Meetups</h5>
-
     <div id="video-list">
-        {% for video in past %}
+        {% for video in event_past %}
         <div class="video-container">
             <iframe width="560" height="315" src="{{video.vid_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             {% if video.desc %}
@@ -91,10 +126,6 @@
         {% endfor %}
         <br>
         <a href="events/meetups">View More</a>
-    </div>
-    <div>  
-        <h5 id="page-title" style="padding-bottom: 10px;">Hackthons</h5>
-        <hr><br>
     </div>
     {% include 'ai_hub/partials/footer.html' %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

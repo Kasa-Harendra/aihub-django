@@ -21,10 +21,10 @@
     <link rel="stylesheet" href="{% static 'styling/courses/matlab/home.css' %}">
     <title>Experiment-{{ exp.id }}</title>
 </head>
-<body>
+<body oncontextmenu="return false;">
     {% comment %} {% include 'courses/matlab/header.html' %} {% endcomment %}
     <br><br>
-    <a href="/courses/matlab/index#experiments" style="margin-left: 2rem;">List of Experiments</a> &gt <a href="">Experiment - {{ exp.id }}</a>
+    <a href="/courses/calculus-using-matlab#experiments" style="margin-left: 2rem;">List of Experiments</a> &gt <a href="">Experiment - {{ exp.id }}</a>
     <div id="experiment-content" class="container my-4">
         {{ blog_content_html|safe }}
     </div>
