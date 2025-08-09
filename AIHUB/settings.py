@@ -45,6 +45,7 @@ MAIN_APP = [
 ]
 LOCAL_APPS = [
     'apps.courses.matlab.apps.MatlabConfig', 
+    'apps.games.apps.GamesConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + MAIN_APP + LOCAL_APPS
